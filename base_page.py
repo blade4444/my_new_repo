@@ -10,10 +10,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class BaseClass:
+class Driver:
     def __init__(self, driver):
         self.driver = driver
 
+    # driver = webdriver.Chrome("/home/blade/PycharmProjects/my_new_repo/chromedriver")
 
     def filling_in_any_field(self, element, message_text):
         self.driver.find_element_by_xpath(element).clear()
@@ -38,15 +39,9 @@ class BaseClass:
     def get_current_url_page(self, element):
         self.waiting_for_an_item_to_appear(element=element)
         url = self.driver.current_url
+        return url
 
-    # @pytest.fixture(scope="session", autouse=True)
-    # def adding_attachments():
-    #     with allure.MASTER_HELPER.step('Error'):
-    #        allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
 
-    # allure.MASTER_HELPER.attach('request body', json.dumps(params, indent=4), type=AttachmentType.JSON)
-    #
-    # allure.MASTER_HELPER.attach('URL', str(data.url), type=AttachmentType.TEXT)
 
 
 

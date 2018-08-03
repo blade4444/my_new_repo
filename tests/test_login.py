@@ -24,6 +24,3 @@ def test_login_to_admin_panel(driver):
    with allure.MASTER_HELPER.step('Error'):
       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
 
-   # allure.MASTER_HELPER.attach('request body', json.dumps(params, indent=4), type=AttachmentType.JSON)
-   #
-   # allure.MASTER_HELPER.attach('URL', str(data.url), type=AttachmentType.TEXT)
