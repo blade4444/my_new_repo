@@ -1,7 +1,7 @@
 from page.login_page import AdminPanelLoginPage
+from allure.constants import AttachmentType
+import allure
 
-username = "username"
-password = "password"
 
 def test_login_to_admin_panel(driver):
    """
@@ -16,7 +16,14 @@ def test_login_to_admin_panel(driver):
    """
    admin_panel = AdminPanelLoginPage(driver)
    admin_panel.open()
-   admin_panel.enter_username(username)
-   admin_panel.enter_password(password)
+   admin_panel.enter_username("blademax1996@gmail.com")
+   admin_panel.enter_password("blade80668481722")
    admin_panel.submit_login()
-   assert username in driver.title
+
+
+   with allure.MASTER_HELPER.step('Error'):
+      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
+
+   # allure.MASTER_HELPER.attach('request body', json.dumps(params, indent=4), type=AttachmentType.JSON)
+   #
+   # allure.MASTER_HELPER.attach('URL', str(data.url), type=AttachmentType.TEXT)
