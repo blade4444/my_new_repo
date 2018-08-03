@@ -1,7 +1,12 @@
-import conftest
+from page.base_page import BaseClass
+
 
 class AdminPanelLoginPage:
 
+
+
+
+    web_site = "https://www.vpnunlimitedapp.com/en"
     input_email_xpath = "//h4[text()='Email (KeepSolid ID)']/ancestor::div[@class='user_login']/descendant::input"
     input_password_xpath = "//h4[text()='Password']/ancestor::div[@class='log_sec_input_cnt left_tab tab-content active-tab']" \
                      "/descendant::div[@class='user_pass']/descendant::input"
@@ -11,16 +16,18 @@ class AdminPanelLoginPage:
 
     def __init__(self, driver):
         self.driver = driver
+        self.baseclass = BaseClass(driver)
 
     def sign_in_account(self, username, password):
-        self.driver.get("https://www.vpnunlimitedapp.com/en")
+
+        self.driver.get(self.web_site)
         self.driver.find_element_by_xpath("//li//a[text()='Sign In']").click()
         self.driver.find_element_by_xpath(self.input_email_xpath).send_keys(username)
         self.driver.find_element_by_xpath(self.input_password_xpath).send_keys(password)
         self.driver.find_element_by_xpath(self.login_xpath).click()
 
-        conftest.waiting_for_an_item_to_appear(element=self.my_acc_veryfy_xpath)
-        self.my_acc_veryfy_xpath.click()
+        self.baseclass.waiting_for_an_item_to_appear(element=self.my_acc_veryfy_xpath)
+        self.driver.find_element_by_xpath(self.my_acc_veryfy_xpath).click()
         expected_name_user = self.driver.find_element_by_xpath(self.info_window_email_xp).text
         assert expected_name_user == username, ("Expected username %s is not actual username %s") % expected_name_user \
                                                % username

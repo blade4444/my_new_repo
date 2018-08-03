@@ -41,6 +41,9 @@ import allure
 
 
 def test_login_to_admin_panel(driver):
+
+    admin_login_page = AdminPanelLoginPage(driver)
+
     """
     === Description:
     # Open site "http://example.com"
@@ -54,9 +57,8 @@ def test_login_to_admin_panel(driver):
 
     username = "blademax1996@gmail.com"
     password = "blade80668481722"
-    admin_panel = AdminPanelLoginPage(driver)
-    admin_panel.sign_in_account(username=username, password=password)
-    
+    admin_login_page.sign_in_account(username=username, password=password)
+
 
     with allure.MASTER_HELPER.step('Error'):
       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
