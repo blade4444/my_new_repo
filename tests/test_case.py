@@ -42,9 +42,6 @@ import allure
 
 
 def test_login_to_admin_panel(driver):
-
-    admin_login_page = AdminPanelLoginPage(driver)
-
     """
     === Description:
     # Open site "http://example.com"
@@ -55,6 +52,7 @@ def test_login_to_admin_panel(driver):
     === Expected result:
     * Username should be in the title
     """
+    admin_login_page = AdminPanelLoginPage(driver)
 
     username = "blademax1996@gmail.com"
     password = "blade80668481722"
