@@ -22,7 +22,6 @@ def test_login(driver):
      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
 
 
-
 def test_logout(driver):
     '''
     === Description:
