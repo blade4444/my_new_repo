@@ -11,7 +11,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
 
-
 class Driver:
     def __init__(self, driver):
         self.driver = driver
@@ -19,9 +18,16 @@ class Driver:
 
     # driver = webdriver.Chrome("/home/blade/PycharmProjects/my_new_repo/chromedriver")
 
-    def find_element_by_xp(self, element, click_el=False):
+    def find_element(self, element, click_el=False, by_css_sel=False, class_name=False, by_id=False):
         self.waiting_for_an_item_to_appear(element)
-        element_xp = self.driver.find_element_by_xpath(element)
+        if by_css_sel:
+            element_xp = self.driver.find_element_by_css_selector(element)
+        elif class_name:
+            element_xp = self.driver.find_element_by_class_name(element)
+        elif by_id:
+            element_xp = self.driver.find_element_by_id(element)
+        else:
+            element_xp = self.driver.find_element_by_xpath(element)
         if click_el:
             element_xp.click()
         return element_xp
@@ -50,13 +56,13 @@ class Driver:
         url = self.driver.current_url
         return url
 
-    def hover_element_open(self, element_for_hover, element_for_change_hover):
+    def hover_element_open(self, element_for_hover, waiting_for_an_element):
         element_for_hover = self.driver.find_element_by_xpath(element_for_hover)
         ActionChains(self.driver).move_to_element(element_for_hover).click_and_hold(element_for_hover).perform()
-        self.waiting_for_an_item_to_appear(element_for_change_hover)
+        self.waiting_for_an_item_to_appear(waiting_for_an_element)
 
     def get_text_from_element(self, element):
-        text = self.find_element_by_xp(element).text
+        text = self.find_element(element).text
         return text
 
 
