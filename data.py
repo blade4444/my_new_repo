@@ -6,4 +6,5 @@ web_site_main = "https://www.vpnunlimitedapp.com/en"
 
 name = "test"
 email = "tets@test.com"
+negative_email = ["tets@test", "test"]
 message = "test"

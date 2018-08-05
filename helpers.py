@@ -35,8 +35,9 @@ class Driver:
         by_what, element = element[:element.find('=')], element[element.find('=') + 1:]
         return by_what, element
 
-    def find_element_h(self, element, click_el=False):
-        self.waiting_for_an_item_to_appear(element)
+    def find_element_h(self, element, click_el=False, wait_el = True):
+        if wait_el:
+            self.waiting_for_an_item_to_appear(element)
         by_what, element = self.divide(element)
         element_xp = self.driver.find_element(by_what, element)
         if click_el:
@@ -44,10 +45,7 @@ class Driver:
         return element_xp
 
     def filling_in_a_field(self, element, message_text, clear=False):
-        # self.waiting_for_an_item_to_appear(element)
         element = self.find_element_h(element)
-
-        #TODO:
         if clear:
             element.clear()
         element.send_keys(message_text)
@@ -63,23 +61,20 @@ class Driver:
     # def waiting_for_item_visibility(self, element):
     #     self.wait.until(EC.visibility_of(element))
     #
-    # def waiting_to_change_the_attribute_value_of_an_element(self):
-    #     WebDriverWait(self.driver, 60).until(lambda _: self.driver.find_element_by_name('vpn_switch').text == 'connected')
+    # def waiting_to_change_the_attribute_value_of_an_element(self, element):
+    #     by_what, element = self.divide(element)
+    #     WebDriverWait(self.driver, 10).until(lambda _: self.driver.find_element(by_what, element).text == 'disabled')
 
     def get_current_url_page(self, element):
         self.waiting_for_an_item_to_appear(element=element)
         url = self.driver.current_url
         return url
 
-    def hover_element_open(self, element_for_hover, waiting_for_an_element):
-        element_for_hover = self.driver.find_element_h(element_for_hover)
-        # TODO
+    def hover_element_open(self, element_for_hover):
+        element_for_hover = self.find_element_h(element_for_hover)
         action = ActionChains(self.driver)
         action = action.move_to_element(element_for_hover)
         action.click_and_hold(element_for_hover).perform()
-        self.waiting_for_an_item_to_appear(waiting_for_an_element)
-        # ActionChains(self.driver).move_to_element(element_for_hover).click_and_hold(element_for_hover).perform()
-        # self.waiting_for_an_item_to_appear(waiting_for_an_element)
 
     def get_text_from_element(self, element):
         text = self.find_element_h(element).text
@@ -91,17 +86,14 @@ class Driver:
     def exit_the_iframe(self):
         self.driver.switch_to.default_content()
 
-    def operation_into_iframe(self, element, iframe_butt, message, el_for_message, iframe_for_mess):
-        self.driver.switch_to_frame(self.find_element_h(iframe_butt))
-        self.driver.find_element_by_xpath(element).click()
-        self.driver.switch_to.default_content()
+    def verify_element_is_enabled_or_disabled(self, element, attribute="disabled"):
+        element_value = self.get_attribute_element(element, attribute)
+        return element_value
 
-        self.driver.switch_to_frame(self.find_element_h(iframe_for_mess))
-        self.driver.find_element_by_xpath(el_for_message).send_keys(message)
+    def get_attribute_element(self, element, attribute):
 
-        # body_m = self.driver.find_element_by_xpath(el_for_message).send_keys(message)
-        self.driver.switch_to.default_content()
-
-
+        element_value = self.find_element_h(element=element, wait_el=False)
+        element_value = element_value.get_attribute(attribute)
+        return element_value
 
 
