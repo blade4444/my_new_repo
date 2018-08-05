@@ -1,5 +1,5 @@
 from helpers import Driver
-import data, random, traceback
+import data, random, traceback, time
 
 
 class MainPage:
@@ -33,8 +33,16 @@ class MainPage:
     send_message_successful_butt_xp = "xpath=//div[@id='Embed']//input[@type='button']"
     in_iframe_button_xp = "xpath=//iframe[@id='launcher']"
     iframe_for_into_the_window = "id=webWidget"
+    cansel_button_xp = "xpath=//div[@class='src-component-button-ButtonSecondary-button src-styles-components-Button-" \
+                       "c-btn undefined src-styles-components-Button-c-btn--secondary ']"
 
-
+    #########################################Subscriber to us field#################################################
+    field_for_subscribe_to_us = "xpath=//input[@class='footer_input_form']"
+    send_butt_for_subs = "xpath=//label[@class='footer_input_btn_label']"
+    negative_mess_with_inc_data = "xpath=//*[text()='The \"E-mail\" field must contain a valid email address.']"
+    close_butt_after_subscribe = "xpath=//span[@class='modal-popup--button']"
+    positive_mess_after_sub = "xpath=//h3[text()='Thanks for subscribing!']"
+    wait_attribut_befor_send_mess = "xpath=//input[@class='footer_input_btn']"
 
     def __init__(self, driver):
         self.driver_h = Driver(driver)
@@ -60,7 +68,7 @@ class MainPage:
 
     def rand_transition_between_header_menu(self):
         element = random.choice([self.extras_button_xp, self.info_button_xp, self.support_button_xp,
-                                 self.pricing_button_xp, self.downloads_button_xp, self.blog_button_xp])
+                                 self.pricing_button_xp, self.downloads_button_xp])
         self.driver_h.find_element_h(element=element, click_el=True)
 
     def verify_working_logo_button(self):
@@ -93,4 +101,24 @@ class MainPage:
 
     def verify_button_send_message_to_supp_is_disabled(self):
         value_elements = self.driver_h.verify_element_is_enabled_or_disabled(self.send_message_button_xp)
+        self.driver_h.find_element_h(self.cansel_button_xp, click_el=True)
+        self.driver_h.exit_the_iframe()
         assert value_elements == "true", ("Send button is enabled whith incorect email!")
+
+    def input_data_in_subscriber_to_us_field(self, positive=True):
+        self.driver_h.filling_in_a_field(clear=True, element=self.field_for_subscribe_to_us, message_text=
+                                    data.email_to_sub_positive if positive else data.email_to_sub_negative)
+
+    def send_email_for_subscribe(self):
+        self.driver_h.find_element_h(element=self.send_butt_for_subs, click_el=True)
+
+    def verify_subscriber_operation(self, positive=True):
+        if positive:
+            message = self.driver_h.get_text_from_element(self.positive_mess_after_sub)
+            assert message == "Thanks for subscribing!", ("Subscription attempt failed")
+        else:
+            message = self.driver_h.get_text_from_element(self.negative_mess_with_inc_data)
+            assert message == "The \"E-mail\" field must contain a valid email address.", ("Subscription attempt failed")
+        self.driver_h.find_element_h(self.close_butt_after_subscribe, click_el=True)
+        self.driver_h.refresh_browser(element=self.logo_button_xp)
+

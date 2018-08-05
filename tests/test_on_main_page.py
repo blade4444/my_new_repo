@@ -36,7 +36,17 @@ def test_02_logout(driver):
      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
 
 
-def test_03_checking_work_logo_button(driver):
+# def test_03_send_message_to_support(driver):
+#
+#     main_page = MainPage(driver)
+#     main_page.open_support_window()
+#     main_page.write_message_to_support()
+#     main_page.send_message_to_support()
+#     with allure.MASTER_HELPER.step('test_03_send_message_to_support'):
+#       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
+
+
+def test_04_checking_work_logo_button(driver):
     """
     === Description:
     # Go to any tab in the menu bar
@@ -48,24 +58,32 @@ def test_03_checking_work_logo_button(driver):
     main_page = MainPage(driver)
     main_page.rand_transition_between_header_menu()
     main_page.verify_working_logo_button()
-    with allure.MASTER_HELPER.step('test_03_checking_work_logo_button'):
+    with allure.MASTER_HELPER.step('test_04_checking_work_logo_button'):
      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
 
 
-# def test_04_send_message_to_support(driver):
-#
-#     main_page = MainPage(driver)
-#     main_page.open_support_window()
-#     main_page.write_message_to_support()
-#     main_page.send_mesage_to_support()
-#     with allure.MASTER_HELPER.step('test_04_send_message_to_support'):
-#       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
-
 def test_05_negative_send_message_to_support_with_incorrect_email(driver):
-
     main_page = MainPage(driver)
     main_page.open_support_window()
     main_page.write_message_to_support(negative=True)
     main_page.verify_button_send_message_to_supp_is_disabled()
     with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
+      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
+
+
+def test_06_verify_subscribe_to_us_positive(driver):
+    main_page = MainPage(driver)
+    main_page.input_data_in_subscriber_to_us_field()
+    main_page.send_email_for_subscribe()
+    main_page.verify_subscriber_operation()
+    with allure.MASTER_HELPER.step('test_06_verify_subscribe_to_us_positive'):
+      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
+
+
+def test_07_verify_subscribe_to_us_negative(driver):
+    main_page = MainPage(driver)
+    main_page.input_data_in_subscriber_to_us_field(positive=False)
+    main_page.send_email_for_subscribe()
+    main_page.verify_subscriber_operation(positive=False)
+    with allure.MASTER_HELPER.step('test_07_verify_subscribe_to_us_negative'):
       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)

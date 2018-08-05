@@ -35,7 +35,7 @@ class Driver:
         by_what, element = element[:element.find('=')], element[element.find('=') + 1:]
         return by_what, element
 
-    def find_element_h(self, element, click_el=False, wait_el = True):
+    def find_element_h(self, element, click_el=False, wait_el=True):
         if wait_el:
             self.waiting_for_an_item_to_appear(element)
         by_what, element = self.divide(element)
@@ -59,6 +59,7 @@ class Driver:
     #     self.wait.until(EC.staleness_of(element))
     #
     # def waiting_for_item_visibility(self, element):
+    #     by_what, element = self.divide(element)
     #     self.wait.until(EC.visibility_of(element))
     #
     # def waiting_to_change_the_attribute_value_of_an_element(self, element):
@@ -91,9 +92,12 @@ class Driver:
         return element_value
 
     def get_attribute_element(self, element, attribute):
-
         element_value = self.find_element_h(element=element, wait_el=False)
         element_value = element_value.get_attribute(attribute)
         return element_value
+
+    def refresh_browser(self, element):
+        self.driver.refresh()
+        self.waiting_for_an_item_to_appear(element)
 
 
