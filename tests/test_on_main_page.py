@@ -37,7 +37,14 @@ def test_02_logout(driver):
 
 
 # def test_03_send_message_to_support(driver):
-#
+#     """
+#     === Description:
+#     # Open support window in the right down corner
+#     # Input in the field correct data
+#     # Click button 'Send'
+#     === Expected result:
+#     * The message will be sent
+#     """
 #     main_page = MainPage(driver)
 #     main_page.open_support_window()
 #     main_page.write_message_to_support()
@@ -63,6 +70,14 @@ def test_04_checking_work_logo_button(driver):
 
 
 def test_05_negative_send_message_to_support_with_incorrect_email(driver):
+    """
+    === Description:
+    # Open support window in the right down corner
+    # Input in the field incorrect data
+    === Expected result:
+    * Button 'Send' is disabled
+    * The message will not be sent
+    """
     main_page = MainPage(driver)
     main_page.open_support_window()
     main_page.write_message_to_support(negative=True)
@@ -72,6 +87,13 @@ def test_05_negative_send_message_to_support_with_incorrect_email(driver):
 
 
 def test_06_verify_subscribe_to_us_positive(driver):
+    """
+    === Description:
+    # In the form "Subscribe to us" incert correct email
+    # Click button for subscriber
+    === Expected result:
+    * Subscription will be successful
+    """
     main_page = MainPage(driver)
     main_page.input_data_in_subscriber_to_us_field()
     main_page.send_email_for_subscribe()
@@ -81,9 +103,17 @@ def test_06_verify_subscribe_to_us_positive(driver):
 
 
 def test_07_verify_subscribe_to_us_negative(driver):
+    """
+    === Description:
+    # In the form "Subscribe to us" incert incorrect email
+    # Click button for subscriber
+    === Expected result:
+    * Subscription will not be successful
+    """
     main_page = MainPage(driver)
     main_page.input_data_in_subscriber_to_us_field(positive=False)
     main_page.send_email_for_subscribe()
     main_page.verify_subscriber_operation(positive=False)
     with allure.MASTER_HELPER.step('test_07_verify_subscribe_to_us_negative'):
       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
+
