@@ -9,6 +9,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from allure.constants import AttachmentType
+import allure
 
 
 class Driver:
@@ -99,5 +101,9 @@ class Driver:
     def refresh_browser(self, element):
         self.driver.refresh()
         self.waiting_for_an_item_to_appear(element)
+
+    def screen_shot_method(self, name_functions):
+        with allure.MASTER_HELPER.step(name_functions):
+            allure.MASTER_HELPER.attach('screen_shot', self.driver.get_screenshot_as_png(), type=AttachmentType.PNG)
 
 

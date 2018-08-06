@@ -142,3 +142,5 @@ class MainPage:
         self.driver_h.find_element_h(self.close_butt_after_subscribe, click_el=True)
         self.driver_h.refresh_browser(element=self.logo_button_xp)
 
+    def get_screen_shot(self, name_functions):
+        self.driver_h.screen_shot_method(name_functions)
