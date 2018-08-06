@@ -107,7 +107,7 @@ def test_06_verify_subscribe_to_us_positive(driver):
     main_page = MainPage(driver)
     main_page.input_data_in_subscriber_to_us_field()
     main_page.send_email_for_subscribe()
-    with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
+    with allure.MASTER_HELPER.step('test_06_verify_subscribe_to_us_positive'):
       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
     main_page.verify_subscriber_operation()
     with allure.MASTER_HELPER.step('test_06_verify_subscribe_to_us_positive'):
@@ -124,7 +124,7 @@ def test_07_verify_subscribe_to_us_negative(driver):
     """
     main_page = MainPage(driver)
     main_page.input_data_in_subscriber_to_us_field(positive=False)
-    with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
+    with allure.MASTER_HELPER.step('test_07_verify_subscribe_to_us_negative'):
       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
     main_page.send_email_for_subscribe()
     with allure.MASTER_HELPER.step('test_07_verify_subscribe_to_us_negative'):
