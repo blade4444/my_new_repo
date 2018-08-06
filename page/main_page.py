@@ -24,6 +24,18 @@ class MainPage:
     get_this_deal_button = "xpath=//div[@class='wrapper_button']//a"
     actual_url_page = "xpath=//link[@href and @rel='canonical']"
 
+    # ################################################ xpath for send message to support ############################
+    # supp_butt_in_right_bottom = "xpath=//*[@class='src-component-Launcher-label Arrange-sizeFit u-textInheritColor u-inlineBlock ']"
+    # input_name_xp = "id=___$_31__profile__name"
+    # input_email_xp = "id=___$_31__profile__email"                              test!!!!!!!!!!!!!!!!!
+    # input_message_xp = "xpath=//*[@name='message']"
+    # start_chatting_button_xp = "xpath=//input[@value='Start Chatting']"
+    # start_chatting_successful_xp = "xpath=//*[@placeholder='Type your message here']"
+    # in_iframe_button_xp = "xpath=//iframe[@id='launcher']"
+    # iframe_for_into_the_window = "xpath=//iframe[@data-test-id='ChatWidgetWindow-iframe']"
+    # cansel_button_xp = "xpath=//div[@class='src-component-button-ButtonSecondary-button src-styles-components-Button-" \
+    #                    "c-btn undefined src-styles-components-Button-c-btn--secondary ']"
+
     ################################################ xpath for send message to support ############################
     supp_butt_in_right_bottom = "xpath=//*[@class='src-component-Launcher-label Arrange-sizeFit u-textInheritColor u-inlineBlock ']"
     input_name_xp = "xpath=//input[@name='name']"
@@ -35,6 +47,7 @@ class MainPage:
     iframe_for_into_the_window = "id=webWidget"
     cansel_button_xp = "xpath=//div[@class='src-component-button-ButtonSecondary-button src-styles-components-Button-" \
                        "c-btn undefined src-styles-components-Button-c-btn--secondary ']"
+
 
     #########################################Subscriber to us field#################################################
     field_for_subscribe_to_us = "xpath=//input[@class='footer_input_form']"
@@ -91,6 +104,8 @@ class MainPage:
 
     def send_message_to_support(self):
         self.driver_h.find_element_h(element=self.send_message_button_xp, click_el=True)
+
+    def verify_send_message_is_successful(self):
         try:
             self.driver_h.find_element_h(element=self.send_message_successful_butt_xp, click_el=True)
         except Exception as err:
@@ -98,6 +113,7 @@ class MainPage:
                   "Error: Message was not send\n")
         finally:
             self.driver_h.exit_the_iframe()
+            self.driver_h.refresh_browser(self.logo_button_xp)
 
     def verify_button_send_message_to_supp_is_disabled(self):
         value_elements = self.driver_h.verify_element_is_enabled_or_disabled(self.send_message_button_xp)
