@@ -77,23 +77,23 @@ def test_04_checking_work_logo_button(driver):
      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
 
 
-def test_05_negative_send_message_to_support_with_incorrect_email(driver):
-    """
-    === Description:
-    # Open support window in the right down corner
-    # Input in the field incorrect data
-    === Expected result:
-    * Button 'Send' is disabled
-    * The message will not be sent
-    """
-    main_page = MainPage(driver)
-    main_page.open_support_window()
-    with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
-      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
-    main_page.write_message_to_support(negative=True)
-    with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
-      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
-    main_page.verify_button_send_message_to_supp_is_disabled()
+# def test_05_negative_send_message_to_support_with_incorrect_email(driver):
+    # """
+    # === Description:
+    # # Open support window in the right down corner
+    # # Input in the field incorrect data
+    # === Expected result:
+    # * Button 'Send' is disabled
+    # * The message will not be sent
+    # """
+    # main_page = MainPage(driver)
+    # main_page.open_support_window()
+    # with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
+    #   allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
+    # main_page.write_message_to_support(negative=True)
+    # with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
+    #   allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
+    # main_page.verify_button_send_message_to_supp_is_disabled()
 
 
 def test_06_verify_subscribe_to_us_positive(driver):
