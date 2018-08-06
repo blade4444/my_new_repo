@@ -36,23 +36,23 @@ def test_02_logout(driver):
     main_page.get_screen_shot("test_02_logout")
 
 
-def test_03_send_message_to_support(driver):
-    """
-    #=== Description:
-    # Open support window in the right down corner
-    # Input in the field correct data
-    # Click button 'Send'
-    #=== Expected result:
-    #* The message will be sent
-    """
-    main_page = MainPage(driver)
-    main_page.open_support_window()
-    main_page.get_screen_shot("test_03_send_message_to_support")
-    main_page.write_message_to_support()
-    main_page.get_screen_shot("test_03_send_message_to_support")
-    main_page.send_message_to_support()
-    main_page.get_screen_shot("test_03_send_message_to_support")
-    main_page.verify_send_message_is_successful()
+# def test_03_send_message_to_support(driver):
+#     """
+#     #=== Description:
+#     # Open support window in the right down corner
+#     # Input in the field correct data
+#     # Click button 'Send'
+#     #=== Expected result:
+#     #* The message will be sent
+#     """
+#     main_page = MainPage(driver)
+#     main_page.open_support_window()
+#     main_page.get_screen_shot("test_03_send_message_to_support")
+#     main_page.write_message_to_support()
+#     main_page.get_screen_shot("test_03_send_message_to_support")
+#     main_page.send_message_to_support()
+#     main_page.get_screen_shot("test_03_send_message_to_support")
+#     main_page.verify_send_message_is_successful()
 
 
 def test_04_checking_work_logo_button(driver):
