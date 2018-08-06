@@ -119,6 +119,8 @@ class MainPage:
         else:
             message = self.driver_h.get_text_from_element(self.negative_mess_with_inc_data)
             assert message == "The \"E-mail\" field must contain a valid email address.", ("Subscription attempt failed")
+
+    def close_information_window_with_subscriber(self):
         self.driver_h.find_element_h(self.close_butt_after_subscribe, click_el=True)
         self.driver_h.refresh_browser(element=self.logo_button_xp)
 
