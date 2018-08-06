@@ -131,6 +131,8 @@ def test_07_verify_subscribe_to_us_negative(driver):
     with allure.MASTER_HELPER.step('test_07_verify_subscribe_to_us_negative'):
       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
     main_page.verify_subscriber_operation(positive=False)
+    with allure.MASTER_HELPER.step('test_07_verify_subscribe_to_us_negative'):
+      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
     main_page.close_information_window_with_subscriber()
 
 
