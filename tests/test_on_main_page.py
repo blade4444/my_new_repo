@@ -94,8 +94,6 @@ def test_05_negative_send_message_to_support_with_incorrect_email(driver):
     with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
     main_page.verify_button_send_message_to_supp_is_disabled()
-    with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
-      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
 
 
 def test_06_verify_subscribe_to_us_positive(driver):
@@ -108,8 +106,6 @@ def test_06_verify_subscribe_to_us_positive(driver):
     """
     main_page = MainPage(driver)
     main_page.input_data_in_subscriber_to_us_field()
-    with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
-      allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
     main_page.send_email_for_subscribe()
     with allure.MASTER_HELPER.step('test_05_negative_send_message_to_support_with_incorrect_email'):
       allure.MASTER_HELPER.attach('screen_shot', driver.get_screenshot_as_png(), type=AttachmentType.PNG)
