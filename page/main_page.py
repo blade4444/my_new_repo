@@ -102,8 +102,10 @@ class MainPage:
                                          message_text=random.choice(data.negative_email) if negative else data.email)
         self.driver_h.filling_in_a_field(element=self.input_message_xp, message_text=data.message)
 
-    def send_message_to_support(self):
+    def send_message_to_support(self, positive=True):
         self.driver_h.find_element_h(element=self.send_message_button_xp, click_el=True)
+        if positive:
+            self.driver_h.find_element_h(element=self.send_message_successful_butt_xp)
 
     def verify_send_message_is_successful(self):
         try:
@@ -127,6 +129,7 @@ class MainPage:
 
     def send_email_for_subscribe(self):
         self.driver_h.find_element_h(element=self.send_butt_for_subs, click_el=True)
+        self.driver_h.find_element_h(element=self.close_butt_after_subscribe)
 
     def verify_subscriber_operation(self, positive=True):
         if positive:
