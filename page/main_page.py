@@ -129,7 +129,6 @@ class MainPage:
 
     def send_email_for_subscribe(self):
         self.driver_h.find_element_h(element=self.send_butt_for_subs, click_el=True)
-        self.driver_h.find_element_h(element=self.close_butt_after_subscribe)
 
     def verify_subscriber_operation(self, positive=True):
         if positive:
